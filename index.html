@@ -120,7 +120,7 @@
     }
     .why-box p{opacity:.9;}
 
-    /* CARD COLOR – INJOURNEY STYLE */
+    /* CARD COLOR */
     .why-box:nth-child(1){
       background:linear-gradient(135deg,#0A2A43,#0F4C75);
     }
@@ -152,10 +152,11 @@
       transform:scale(1.08);
     }
 
-    /* ===== AVAILABLE SPACE PATTERN ===== */
+    /* AVAILABLE SPACE PATTERN */
     .available-pattern{
       background:linear-gradient(180deg,#ffffff 0%,#eef5fb 100%);
       overflow:hidden;
+      position:relative;
     }
 
     .available-pattern::before{
@@ -174,7 +175,7 @@
       z-index:2;
     }
 
-    /* TERMINAL */
+    /* TERMINAL BUTTONS */
     .terminal-buttons{
       display:flex;
       justify-content:center;
@@ -202,163 +203,6 @@
       background:#0a2a43;
       color:white;
     }
-
-    /* =========================================================
-   ===============     RESPONSIVE MOBILE     ===============
-   ========================================================= */
-@media only screen and (max-width: 600px) {
-
-  /* ---- NAVBAR ---- */
-  .nav-container {
-    width: 92%;
-  }
-
-  .logo-left {
-    height: 50px;
-  }
-
-  .logo-right {
-    height: 40px;
-  }
-
-  /* ---- HERO ---- */
-  .hero {
-    height: auto;
-    padding: 130px 20px 80px;
-    background-position: center;
-  }
-
-  .hero h1 {
-    font-size: 28px;
-    line-height: 1.3;
-  }
-
-  .hero p {
-    font-size: 16px;
-    margin-top: 10px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    text-align: center;
-    padding: 14px 0;
-    font-size: 16px;
-  }
-
-  /* ---- SECTION ---- */
-  .section {
-    padding: 60px 6%;
-  }
-
-  .section h2 {
-    font-size: 28px;
-    margin-bottom: 40px;
-  }
-
-  /* ---- WHY BOX ---- */
-  .why-container {
-    gap: 20px;
-  }
-
-  .why-box {
-    width: 100%;
-    max-width: 330px;
-    padding: 26px 22px;
-  }
-
-  .why-box h3 {
-    font-size: 26px;
-  }
-
-  .why-box p {
-    font-size: 15px;
-  }
-
-  /* ---- SPONSOR LOGO ---- */
-  .brand-logo {
-    width: 65px;
-  }
-
-  /* ---- AVAILABLE SPACE ---- */
-  .terminal-buttons {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .terminal-btn {
-    width: 100%;
-    text-align: center;
-    padding: 14px 0;
-  }
-
-  /* ---- FOOTER ---- */
-  footer {
-    padding: 30px 12px;
-    font-size: 14px;
-  }
-}
-
-
-  /* =========================================================
-     ===============     RESPONSIVE TABLET     ===============
-     ========================================================= */
-  @media only screen and (min-width: 601px) and (max-width: 900px) {
-    
-    .logo-left { height: 60px; }
-    .logo-right { height: 48px; }
-  
-    .hero {
-      padding: 140px 40px 100px;
-      height: auto;
-    }
-  
-    .hero h1 {
-      font-size: 38px;
-    }
-  
-    .hero p {
-      font-size: 18px;
-    }
-  
-    .why-box {
-      width: 45%;
-      max-width: 350px;
-    }
-  
-    .section {
-      padding: 80px 8%;
-    }
-  
-    .section h2 {
-      font-size: 34px;
-    }
-  
-    .brand-logo {
-      width: 75px;
-    }
-  }
-  
-  
-  /* =========================================================
-     ===============     DESKTOP SMALL FIX     ===============
-     ========================================================= */
-  @media only screen and (min-width: 901px) and (max-width: 1280px) {
-  
-    .nav-container {
-      width: 92%;
-    }
-  
-    .why-box {
-      width: 280px;
-    }
-  }
-
   </style>
 </head>
 
@@ -435,8 +279,4 @@
 
 </body>
 </html>
-
-
-
-
 
