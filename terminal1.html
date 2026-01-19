@@ -22,7 +22,6 @@
       min-height:100vh;
     }
 
-    /* Blur overlay */
     .fullscreen-blur{
       position:fixed;
       inset:0;
@@ -31,7 +30,6 @@
     }
     body>*{position:relative;z-index:1}
 
-    /* NAVBAR */
     header{
       display:flex;
       justify-content:space-between;
@@ -51,11 +49,11 @@
       font-size:15px;
     }
 
-    /* TITLE */
     h1{
       text-align:center;
       margin:14px 0 20px;
       font-size:28px;
+      white-space:nowrap;
     }
 
     /* GRID */
@@ -66,6 +64,7 @@
       justify-content:center;
     }
 
+    /* MIRIP T2 */
     .stand-card{
       width:100%;
       max-width:300px;
@@ -74,36 +73,23 @@
       padding:14px;
       cursor:pointer;
       transition:.25s;
+      color:#004b45;
     }
 
     .stand-card:hover{transform:translateY(-5px)}
 
-    .card-slider{
-      display:flex;
-      overflow-x:auto;
-      scroll-snap-type:x mandatory;
-    }
-    .card-slider::-webkit-scrollbar{display:none}
-
-    .card-slider img{
-      min-width:100%;
+    .stand-card img{
+      width:100%;
       height:140px;
       object-fit:cover;
       border-radius:10px;
-      scroll-snap-align:start;
-      pointer-events:none;
+      margin-bottom:10px;
     }
 
     .stand-card h3{
-      color:#004b45;
-      margin-top:10px;
       font-size:18px;
       text-align:center;
-    }
-    .stand-card p{
-      color:#5d6b6a;
-      font-size:14px;
-      text-align:center;
+      font-weight:700;
     }
 
     /* POPUP */
@@ -128,6 +114,7 @@
       position:relative;
       max-height:90vh;
       overflow:auto;
+      color:#004b45;
     }
 
     .popup-close{
@@ -139,7 +126,6 @@
       color:#444;
     }
 
-    /* SLIDER */
     .slider-wrapper{
       position:relative;
       overflow:hidden;
@@ -184,7 +170,6 @@
       margin-bottom:60px;
     }
 
-    /* ACTION BUTTON */
     .popup-action{
       position:sticky;
       bottom:0;
@@ -202,18 +187,6 @@
       border-radius:12px;
       text-decoration:none;
       font-weight:700;
-    }
-
-    /* MOBILE FIX */
-    @media(max-width:600px){
-      header img{height:38px}
-      header nav a{font-size:14px}
-
-      h1{font-size:24px}
-
-      .card-slider img{height:130px}
-
-      .popup-slider img{height:210px}
     }
   </style>
 </head>
@@ -282,13 +255,10 @@ stands.forEach(s=>{
   const card=document.createElement("div");
   card.className="stand-card";
 
-  let imgs="";
-  s.gallery.forEach(g=>imgs+=`<img src="${g}">`);
-
+  // MIRIP TERMINAL 2 → 1 Gambar + Judul
   card.innerHTML=`
-    <div class="card-slider">${imgs}</div>
+    <img src="${s.gallery[0]}">
     <h3>${s.name}</h3>
-    <p>${s.detail[0]}</p>
   `;
 
   card.onclick=()=>openPopup(s);
