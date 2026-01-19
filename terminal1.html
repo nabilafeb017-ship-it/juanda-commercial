@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Available Space - Terminal 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:"Poppins",sans-serif;
+      background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url('assets/BG Hero.png');
+      background-size:cover;
+      background-attachment:fixed;
+      color:#fff;
+      padding:28px;
+      min-height:100vh;
+    }
+
+    .fullscreen-blur{
+      position:fixed;
+      inset:0;
+      backdrop-filter:blur(4px);
+      z-index:0;
+    }
+    body>*{position:relative;z-index:1}
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px 20px;
+      background:rgba(255,255,255,.92);
+      border-radius:12px;
+      margin-bottom:20px;
+    }
+
+    header img{height:50px}
+    header nav a{
+      margin-left:18px;
+      text-decoration:none;
+      font-weight:600;
+      color:#006c61;
+    }
+
+    h1{text-align:center;margin:20px 0}
+
+    /* ===== GRID ===== */
+    .stand-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:22px;
+      justify-content:center;
+    }
+
+    .stand-card{
+      width:300px;
+      background:rgba(255,255,255,.9);
+      border-radius:14px;
+      padding:14px;
+      cursor:pointer;
+      transition:.25s;
+    }
+    .stand-card:hover{transform:translateY(-6px)}
+
+    .card-slider{
+      display:flex;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+    }
+    .card-slider::-webkit-scrollbar{display:none}
+
+    .card-slider img{
+      min-width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:10px;
+      scroll-snap-align:start;
+      pointer-events:none;
+    }
+
+    .stand-card h3{
+      color:#004b45;
+      margin-top:12px;
+    }
+    .stand-card p{
+      color:#5d6b6a;
+      font-size:14px;
+    }
+
+    /* ===== POPUP ===== */
+    .popup-overlay{
+      position:fixed;
+      inset:0;
+      display:none;
+      justify-content:center;
+      align-items:center;
+      background:rgba(0,0,0,.6);
+      z-index:9999;
+    }
+    .popup-overlay.active{display:flex}
+
+    .popup-box{
+      background:#fff;
+      width:90%;
+      max-width:900px;
+      border-radius:18px;
+      padding:22px;
+      position:relative;
+      max-height:90vh;
+      overflow:auto;
+    }
+
+    .popup-close{
+      position:absolute;
+      top:12px;
+      right:18px;
+      font-size:26px;
+      cursor:pointer;
+    }
+
+    /* ===== SLIDER + PANAH ===== */
+    .slider-wrapper{
+      position:relative;
+      overflow:hidden;
+      margin:18px 0;
+    }
+
+    .popup-slider{
+      display:flex;
+      transition:transform .4s ease;
+    }
+
+    .popup-slider img{
+      min-width:100%;
+      height:320px;
+      object-fit:cover;
+      border-radius:14px;
+      flex-shrink:0;
+    }
+
+    .slider-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:#0aa89e;
+      color:#fff;
+      border:none;
+      font-size:22px;
+      cursor:pointer;
+      z-index:10;
+    }
+
+    .slider-btn.left{left:12px}
+    .slider-btn.right{right:12px}
+
+    .popup-box ul{
+      color:#444;
+      line-height:1.7;
+      padding-left:18px;
+      margin-bottom:90px;
+    }
+
+    /* ===== RESERVE STAY ===== */
+    .popup-action{
+      position:sticky;
+      bottom:0;
+      background:#fff;
+      padding:16px 0 10px;
+      text-align:center;
+      border-top:1px solid #eee;
+    }
+
+    .popup-action a{
+      display:inline-block;
+      background:#0aa89e;
+      color:#fff;
+      padding:14px 36px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="fullscreen-blur"></div>
+
+<header>
+  <img src="assets/logo.jpg">
+  <nav>
+    <a href="trial 2.html">Beranda</a>
+    <a href="terminal2.html">Terminal 2</a>
+  </nav>
+</header>
+
+<h1>Available Space — Terminal 1</h1>
+
+<div id="stand-list" class="stand-grid"></div>
+
+<!-- POPUP -->
+<div id="popup" class="popup-overlay" onclick="if(event.target===this) closePopup()">
+  <div class="popup-box">
+    <div class="popup-close" onclick="closePopup()">✕</div>
+
+    <h2 id="pTitle" style="text-align:center;color:#004b45"></h2>
+
+    <div class="slider-wrapper">
+      <button class="slider-btn left" onclick="slide(-1)">‹</button>
+      <div id="popupSlider" class="popup-slider"></div>
+      <button class="slider-btn right" onclick="slide(1)">›</button>
+    </div>
+
+    <ul id="pInfo"></ul>
+
+    <div class="popup-action">
+      <a href="informasi.html" class="btn-secondary">Informasi</a>>
+    </div>
+  </div>
+</div>
+
+<script>
+const stands=[
+  {
+    name:"UM-01-01",
+    gallery:[
+      "assets/Permanen 1.1 T1.jpeg",
+      "assets/Permanen 1.2 T1.jpeg",
+      "assets/Permanen 1.3 T1.jpeg"
+    ],
+    detail:[
+      "Lokasi: Lobby Keberangkatan",
+      "Luas: 112 m²",
+      "Terminal: 1",
+      "Akses listrik tersedia",
+      "Cocok tenant musiman"
+    ]
+  },
+  {
+    name:"UM-01-01",
+    gallery:[
+      "assets/Permanen 1.1 T1.jpeg",
+      "assets/Permanen 1.2 T1.jpeg",
+      "assets/Permanen 1.3 T1.jpeg"
+    ],
+    detail:[
+      "Lokasi: Lobby Keberangkatan",
+      "Luas: 112 m²",
+      "Terminal: 1",
+      "Akses listrik tersedia",
+      "Cocok tenant musiman"
+    ]
+  }
+];
+
+let currentSlide=0;
+
+const grid=document.getElementById("stand-list");
+
+stands.forEach(s=>{
+  const card=document.createElement("div");
+  card.className="stand-card";
+
+  let imgs="";
+  s.gallery.forEach(g=>imgs+=`<img src="${g}">`);
+
+  card.innerHTML=`
+    <div class="card-slider">${imgs}</div>
+    <h3>${s.name}</h3>
+    <p>${s.detail[0]}</p>
+  `;
+
+  card.onclick=()=>openPopup(s);
+  grid.appendChild(card);
+});
+
+function openPopup(data){
+  currentSlide=0;
+  document.getElementById("pTitle").innerText=data.name;
+
+  const slider=document.getElementById("popupSlider");
+  slider.innerHTML="";
+  data.gallery.forEach(g=>slider.innerHTML+=`<img src="${g}">`);
+
+  const info=document.getElementById("pInfo");
+  info.innerHTML="";
+  data.detail.forEach(d=>info.innerHTML+=`<li>✓ ${d}</li>`);
+
+  updateSlide();
+  document.getElementById("popup").classList.add("active");
+}
+
+function slide(dir){
+  const slider=document.getElementById("popupSlider");
+  const total=slider.children.length;
+  currentSlide+=dir;
+  if(currentSlide<0) currentSlide=total-1;
+  if(currentSlide>=total) currentSlide=0;
+  updateSlide();
+}
+
+function updateSlide(){
+  document.getElementById("popupSlider")
+    .style.transform=`translateX(-${currentSlide*100}%)`;
+}
+
+function closePopup(){
+  document.getElementById("popup").classList.remove("active");
+}
+</script>
+
+</body>
+</html>

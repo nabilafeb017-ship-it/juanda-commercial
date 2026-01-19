@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Available Space - Terminal 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:"Poppins",sans-serif;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('assets/Terminal 2.jpeg');
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      color:#ffffff;
+      padding:28px;
+      min-height:100vh;
+    }
+
+    .fullscreen-blur{
+      position:fixed;
+      inset:0;
+      backdrop-filter:blur(4px);
+      background:rgba(255,255,255,0);
+      z-index:0;
+    }
+
+    body > *{position:relative;z-index:1}
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+      padding:12px 20px;
+      background:#ffffffee;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    header img{height:50px}
+
+    header nav a{
+      margin-left:18px;
+      color:#006c61;
+      text-decoration:none;
+      font-weight:600;
+      font-size:17px;
+    }
+
+    h1{
+      text-align:center;
+      margin:14px 0 28px;
+      text-shadow:0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    .stand-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:30px;
+    }
+
+    .stand-card{
+      width:300px;
+      background:rgba(255,255,255,0.9);
+      border-radius:12px;
+      padding:14px;
+      box-shadow:0 6px 18px rgba(3,25,22,0.06);
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .stand-card:hover{transform:translateY(-6px)}
+
+    .stand-card img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:8px;
+      margin-bottom:10px;
+    }
+
+    .stand-card h3{color:#004b45}
+
+    /* POPUP */
+    .popup-overlay{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.55);
+      z-index:9999;
+    }
+
+    .popup-box{
+      background:#fff;
+      width:90%;
+      max-width:900px;
+      border-radius:16px;
+      padding:20px;
+      position:relative;
+    }
+
+    .popup-close{
+      position:absolute;
+      right:16px;
+      top:10px;
+      font-size:26px;
+      cursor:pointer;
+      z-index:50;
+      background:#008e82;
+      color:white;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* SLIDER */
+    .slider-container{
+      position:relative;
+      width:85%;
+      height:300px;
+      margin:20px auto;
+      overflow:hidden;
+      border-radius:12px;
+    }
+
+    .slider-track{
+      display:flex;
+      transition:transform .4s ease;
+    }
+
+    .slider-track img{
+      width:100%;
+      height:300px;
+      object-fit:cover;
+      flex-shrink:0;
+    }
+
+    .slider-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      background:#008e82;
+      color:#fff;
+      border:none;
+      padding:10px 14px;
+      border-radius:50%;
+      cursor:pointer;
+      font-size:20px;
+      z-index:20;
+    }
+
+    .slider-btn.prev{left:10px}
+    .slider-btn.next{right:10px}
+
+    /* DOTS */
+    .slider-dots{
+      text-align:center;
+      margin-top:12px;
+    }
+    .slider-dots span{
+      display:inline-block;
+      width:10px;
+      height:10px;
+      background:#ccc;
+      border-radius:50%;
+      margin:0 4px;
+      cursor:pointer;
+    }
+    .slider-dots .active{
+      background:#008e82;
+    }
+
+    .popup-info li{
+      list-style:none;
+      color:#004b45;
+      margin-bottom:6px;
+      position:relative;
+      padding-left:18px;
+    }
+
+    .popup-info li::before{
+      content:"✔";
+      position:absolute;
+      left:0;
+      color:#008e82;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="fullscreen-blur"></div>
+
+<header>
+  <img src="assets/logo.jpg">
+  <nav>
+    <a href="trial 2.html">Beranda</a>
+    <a href="terminal1.html">Terminal 1</a>
+  </nav>
+</header>
+
+<h1>Available Space — Terminal 2</h1>
+
+<div id="stand-list" class="stand-grid"></div>
+
+<!-- POPUP -->
+<div id="popup" class="popup-overlay" onclick="if(event.target===this)closePopup()">
+  <div class="popup-box">
+    <div class="popup-close" onclick="closePopup()">✕</div>
+    <h2 id="pTitle" style="text-align:center;color:#004b45"></h2>
+
+    <div class="slider-container">
+      <button class="slider-btn prev">❮</button>
+      <div class="slider-track" id="sliderTrack"></div>
+      <button class="slider-btn next">❯</button>
+    </div>
+
+    <div id="sliderDots" class="slider-dots"></div>
+
+    <ul id="pInfo" class="popup-info"></ul>
+
+    <div style="text-align:center;margin-top:20px">
+      <a href="informasi.html" 
+        style="background:#008e82;color:#fff;
+        padding:12px 22px;border-radius:10px;
+        font-weight:700;text-decoration:none">
+        Informasi
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+const stands=[
+  {
+    name:"Space ATM Arrival",
+    img:"assets/ATM Timur'.jpeg",
+    gallery:[
+      "assets/ATM Timur'.jpeg",
+      "assets/ATM Timur'.jpeg",
+      "assets/ATM Timur'.jpeg"
+    ],
+    detail:[
+      "Lokasi: Sisi Timur Kedatangan Terminal 2",
+    ]
+  },
+  {
+    name:"Space ATM Departure",
+    img:"assets/foto atm T2 barat.jpeg",
+    gallery:[
+      "assets/foto atm T2 barat.jpeg",
+      "assets/foto atm T2 barat.jpeg",
+      "assets/foto atm T2 barat.jpeg"
+    ],
+    detail:[
+      "Lokasi: Sisi Barat Keberangkatan Terminal 2",
+    ]
+  }
+];
+
+function renderStands(){
+  const grid=document.getElementById("stand-list");
+  grid.innerHTML="";
+  stands.forEach(s=>{
+    const c=document.createElement("div");
+    c.className="stand-card";
+    c.innerHTML=`
+      <img src="${s.img}">
+      <h3>${s.name}</h3>`;
+    c.onclick=()=>openPopup(s);
+    grid.appendChild(c);
+  });
+}
+renderStands();
+
+let index=0, gallery=[];
+
+function openPopup(s){
+  document.getElementById("popup").style.display="flex";
+  document.getElementById("pTitle").innerText=s.name;
+
+  gallery=s.gallery;
+  index=0;
+
+  document.getElementById("sliderTrack").innerHTML=
+    gallery.map(i=>`<img src="${i}">`).join("");
+
+  updateSlide();
+  renderDots();
+
+  document.getElementById("pInfo").innerHTML=
+    s.detail.map(d=>`<li>${d}</li>`).join("");
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+
+function updateSlide(){
+  document.getElementById("sliderTrack").style.transform=
+    `translateX(-${index*100}%)`;
+  renderDots();
+}
+
+function renderDots(){
+  const dots = gallery.map((_, i)=>
+    `<span class="${i===index?'active':''}" onclick="goToSlide(${i})"></span>`
+  ).join("");
+  document.getElementById("sliderDots").innerHTML=dots;
+}
+
+function goToSlide(i){
+  index=i;
+  updateSlide();
+}
+
+document.querySelector(".next").onclick=()=>{
+  if(index < gallery.length-1){ index++; updateSlide(); }
+}
+document.querySelector(".prev").onclick=()=>{
+  if(index > 0){ index--; updateSlide(); }
+}
+</script>
+
+</body>
+</html>
