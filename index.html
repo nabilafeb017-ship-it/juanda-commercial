@@ -138,7 +138,7 @@
       justify-content:center;
       align-items:center;
       flex-direction:column;
-      min-height:200px;
+      min-height:250px;
       position:relative;
     }
     .available-pattern::before{
@@ -152,13 +152,20 @@
     }
     .available-pattern *{position:relative;z-index:2;}
 
+    .available-content{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:20px;
+    }
+
     .terminal-buttons{
       display:flex;
-      flex-direction:column; /* default HP */
+      flex-direction:column;
       gap:18px;
       align-items:center;
       justify-content:center;
-      margin-top:20px;
     }
     .terminal-btn{
       background:#0a2a43;
@@ -186,7 +193,7 @@
     /* MEDIA QUERY DESKTOP / LAPTOP */
     @media(min-width:1024px){
       .hero{
-        height:100vh; /* full layar desktop */
+        height:100vh;
         padding:0;
         display:flex;
         justify-content:center;
@@ -204,18 +211,18 @@
       .btn-primary,.btn-secondary{width:auto;padding:16px 36px;}
 
       .available-pattern{
-        flex-direction:row; /* tombol horizontal desktop */
+        flex-direction:column;
         justify-content:center;
         align-items:center;
-        min-height:250px;
+        min-height:300px;
       }
       .terminal-buttons{
-        flex-direction:row; /* horizontal desktop */
+        flex-direction:row;
         gap:40px;
         margin-top:0;
       }
       .terminal-btn{
-        width:auto; /* menyesuaikan isi */
+        width:auto;
         padding:16px 48px;
       }
     }
@@ -283,11 +290,12 @@
 </section>
 
 <section class="section available-pattern" id="Informasi">
-  <h2>Available Space</h2>
-
-  <div class="terminal-buttons">
-    <a href="terminal1.html" class="terminal-btn">Terminal 1</a>
-    <a href="terminal2.html" class="terminal-btn">Terminal 2</a>
+  <div class="available-content">
+    <h2>Available Space</h2>
+    <div class="terminal-buttons">
+      <a href="terminal1.html" class="terminal-btn">Terminal 1</a>
+      <a href="terminal2.html" class="terminal-btn">Terminal 2</a>
+    </div>
   </div>
 </section>
 
