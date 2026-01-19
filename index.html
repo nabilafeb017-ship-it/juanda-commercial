@@ -173,6 +173,18 @@
       font-size:14px;
       margin-top:20px;
     }
+
+    /* MEDIA QUERY DESKTOP / LAPTOP */
+    @media(min-width:1024px){
+      .hero h1{font-size:44px;} /* judul lebih besar */
+      .hero p{font-size:18px;}
+      .why-container{gap:30px;} /* spacing lebih lega */
+      .why-box{max-width:300px;} /* card tidak terlalu melebar */
+      .hero-buttons{flex-direction:row;justify-content:center;gap:20px;} /* tombol sejajar */
+      .terminal-buttons{flex-direction:row;gap:20px;} /* tombol Terminal sejajar */
+      .btn-primary,.btn-secondary,.terminal-btn{width:auto;padding:14px 36px;} /* tombol desktop lebih lebar */
+      .hero::before{background-size:contain;} /* background hero desktop lebih proporsional */
+    }
   </style>
 </head>
 
