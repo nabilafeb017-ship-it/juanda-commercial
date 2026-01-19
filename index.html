@@ -139,6 +139,7 @@
       align-items:center;
       flex-direction:column;
       min-height:200px;
+      position:relative;
     }
     .available-pattern::before{
       content:"";
@@ -153,10 +154,11 @@
 
     .terminal-buttons{
       display:flex;
-      flex-direction:column;
+      flex-direction:column; /* default HP */
       gap:18px;
-      margin-top:20px;
       align-items:center;
+      justify-content:center;
+      margin-top:20px;
     }
     .terminal-btn{
       background:#0a2a43;
@@ -202,14 +204,20 @@
       .btn-primary,.btn-secondary{width:auto;padding:16px 36px;}
 
       .available-pattern{
-        flex-direction:row;
+        flex-direction:row; /* tombol horizontal desktop */
+        justify-content:center;
+        align-items:center;
+        min-height:250px;
       }
       .terminal-buttons{
-        flex-direction:row;
-        gap:20px;
+        flex-direction:row; /* horizontal desktop */
+        gap:40px;
         margin-top:0;
       }
-      .terminal-btn{width:auto;}
+      .terminal-btn{
+        width:auto; /* menyesuaikan isi */
+        padding:16px 48px;
+      }
     }
   </style>
 </head>
