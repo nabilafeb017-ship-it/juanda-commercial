@@ -31,10 +31,10 @@
     }
     body>*{position:relative;z-index:1}
 
-    /* HEADER */
+    /* HEADER — FIXED */
     header{
       background:#ffffffee;
-      padding:12px 20px;
+      padding:12px 22px;
       border-radius:14px;
       display:flex;
       justify-content:space-between;
@@ -42,14 +42,38 @@
       box-shadow:0 6px 18px rgba(0,0,0,.08);
       margin-bottom:20px;
     }
-    header img{height:48px}
+
+    header img{
+      height:48px;
+      width:auto;
+    }
+
+    header nav{
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
 
     header nav a{
-      margin-left:18px;
       color:#006c61;
       text-decoration:none;
       font-weight:600;
       font-size:16px;
+    }
+
+    /* FIX MOBILE: navbar tetap rata kiri–kanan */
+    @media(max-width:600px){
+      header{
+        flex-direction:row;
+        justify-content:space-between;
+        padding:12px 18px;
+      }
+      header nav{
+        gap:14px;
+      }
+      header nav a{
+        font-size:14px;
+      }
     }
 
     /* TITLE */
@@ -199,7 +223,6 @@
 
     /* MOBILE FIX */
     @media(max-width:600px){
-      header{flex-direction:column;gap:10px;text-align:center}
       .stand-card{width:90%}
       .slider-container{height:220px}
       .slider-track img{height:220px}
@@ -212,8 +235,10 @@
 
 <div class="fullscreen-blur"></div>
 
+<!-- NAVBAR FIX -->
 <header>
-  <img src="assets/logo.jpg">
+  <img src="assets/logo.jpg" alt="Logo">
+
   <nav>
     <a href="index.html">Beranda</a>
     <a href="terminal1.html">Terminal 1</a>
