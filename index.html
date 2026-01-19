@@ -138,7 +138,7 @@
       justify-content:center;
       align-items:center;
       flex-direction:column;
-      min-height:250px;
+      min-height:200px;
       position:relative;
     }
     .available-pattern::before{
@@ -162,23 +162,24 @@
 
     .terminal-buttons{
       display:flex;
-      flex-direction:column;
-      gap:18px;
+      flex-direction:column; /* HP vertikal */
+      gap:20px;
       align-items:center;
       justify-content:center;
     }
+
     .terminal-btn{
       background:#0a2a43;
       color:white;
-      padding:14px 0;
+      padding:18px 0; /* lebih besar HP */
       border-radius:14px;
       font-weight:700;
       text-decoration:none;
       text-align:center;
       box-shadow:0 10px 25px rgba(10,42,67,0.35);
       transition:.3s;
-      width:80%;
-      max-width:250px;
+      width:90%; /* lebih besar HP */
+      max-width:300px;
     }
 
     footer{
@@ -193,7 +194,7 @@
     /* MEDIA QUERY DESKTOP / LAPTOP */
     @media(min-width:1024px){
       .hero{
-        height:100vh;
+        height:100vh; /* full layar desktop */
         padding:0;
         display:flex;
         justify-content:center;
@@ -211,18 +212,17 @@
       .btn-primary,.btn-secondary{width:auto;padding:16px 36px;}
 
       .available-pattern{
-        flex-direction:column;
+        flex-direction:row; /* tombol horizontal desktop */
         justify-content:center;
         align-items:center;
-        min-height:300px;
+        min-height:250px;
       }
       .terminal-buttons{
-        flex-direction:row;
+        flex-direction:row; /* horizontal desktop */
         gap:40px;
-        margin-top:0;
       }
       .terminal-btn{
-        width:auto;
+        width:auto; /* menyesuaikan isi */
         padding:16px 48px;
       }
     }
