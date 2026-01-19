@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1024, initial-scale=0.35">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Commercial Division - Bandara Juanda</title>
 
   <!-- FONT -->
@@ -40,28 +40,44 @@
     .logo-left{height:70px;}
     .logo-right{height:50px;object-fit:contain;}
 
-    /* HERO */
+    /* ========== HERO (SUDAH DIEDIT) ========== */
     .hero{
-      height:100vh;
+      min-height: 520px;
+      height: auto;
+      padding: 120px 20px 100px;
       display:flex;
       justify-content:center;
       align-items:center;
       text-align:center;
-      padding-top:80px;
       background:linear-gradient(135deg,#0077cc,#00aaff);
       position:relative;
     }
+
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:url("assets/BG Hero.png") center/cover no-repeat;
+      background:url("assets/BG Hero.png") top center/contain no-repeat;
       filter:brightness(0.6);
       z-index:1;
     }
-    .hero>div{position:relative;z-index:2;}
-    .hero h1{font-size:50px;color:white;}
-    .hero p{color:#e8f4ff;font-size:20px;}
+
+    .hero > div{
+      position:relative;
+      z-index:2;
+    }
+
+    .hero h1{
+      font-size:50px;
+      color:white;
+      font-weight:700;
+    }
+
+    .hero p{
+      color:#e8f4ff;
+      font-size:20px;
+      margin-top:10px;
+    }
 
     .hero-buttons{
       margin-top:30px;
@@ -69,6 +85,7 @@
       justify-content:center;
       gap:18px;
     }
+
     .btn-primary,.btn-secondary{
       padding:14px 28px;
       border-radius:10px;
@@ -76,8 +93,30 @@
       text-decoration:none;
       transition:.3s;
     }
+
     .btn-primary{background:#037a8ce5;color:white;}
     .btn-secondary{border:2px solid white;color:white;}
+
+    /* RESPONSIVE HP */
+    @media (max-width: 768px){
+      .hero{
+        min-height: 380px;
+        padding:80px 15px 70px;
+      }
+
+      .hero::before{
+        background-size:contain;
+        background-position:top center;
+      }
+
+      .hero h1{
+        font-size:32px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+    }
 
     /* SECTION */
     .section{
@@ -120,21 +159,14 @@
     }
     .why-box p{opacity:.9;}
 
-    /* CARD COLOR */
-    .why-box:nth-child(1){
-      background:linear-gradient(135deg,#0A2A43,#0F4C75);
-    }
-    .why-box:nth-child(2){
-      background:linear-gradient(135deg,#0FB9B1,#00E5D0);
-    }
+    .why-box:nth-child(1){background:linear-gradient(135deg,#0A2A43,#0F4C75);}
+    .why-box:nth-child(2){background:linear-gradient(135deg,#0FB9B1,#00E5D0);}
     .why-box:nth-child(3){
       background:linear-gradient(135deg,#F4C430,#D4A017);
       color:#0A2A43;
     }
 
-    .why-box:hover{
-      transform:translateY(-12px);
-    }
+    .why-box:hover{transform:translateY(-12px);}
 
     /* SPONSOR */
     .sponsor-wrapper{margin-top:60px;}
@@ -148,9 +180,7 @@
       width:80px;
       transition:.3s ease;
     }
-    .brand-logo:hover{
-      transform:scale(1.08);
-    }
+    .brand-logo:hover{transform:scale(1.08);}
 
     /* AVAILABLE SPACE PATTERN */
     .available-pattern{
@@ -182,9 +212,9 @@
       gap:40px;
       flex-wrap:wrap;
     }
+
     .terminal-btn{
       padding:14px 32px;
-      justify-content:center;
       background:#0a2a43;
       color:white;
       border-radius:14px;
@@ -193,6 +223,7 @@
       box-shadow:0 10px 25px rgba(10,42,67,0.35);
       transition:.3s;
     }
+
     .terminal-btn:hover{
       transform:translateY(-4px);
     }
@@ -219,6 +250,7 @@
   <div>
     <h1>Commercial Division<br>Bandara Internasional Juanda</h1>
     <p>Area komersial yang strategis untuk bisnis Anda.</p>
+
     <div class="hero-buttons">
       <a href="#Informasi" class="btn-primary">Available Space</a>
       <a href="informasi.html" class="btn-secondary">Informasi</a>
@@ -234,10 +266,12 @@
       <h3>14 Juta+</h3>
       <p>Penumpang per tahun 2024</p>
     </div>
+
     <div class="why-box">
       <h3>120+ Tenant</h3>
       <p>Ekosistem bisnis</p>
     </div>
+
     <div class="why-box">
       <h3>Gerbang Wisata</h3>
       <p>Jawa Timur</p>
@@ -267,6 +301,7 @@
 
 <section class="section available-pattern" id="Informasi">
   <h2>Available Space</h2>
+
   <div class="terminal-buttons">
     <a href="terminal1.html" class="terminal-btn">Terminal 1</a>
     <a href="terminal2.html" class="terminal-btn">Terminal 2</a>
@@ -279,4 +314,3 @@
 
 </body>
 </html>
-
